@@ -13,7 +13,8 @@ public class Hello {
   static final String SDK_KEY = dotenv.get("SDK_KEY");
 
   // Set FEATURE_FLAG_KEY to the feature flag key you want to evaluate.
-  static final String FEATURE_FLAG_KEY = "qr-code";
+  static final String QR_FLAG_KEY = "qr-code";
+  static final String BACKGROUND_FLAG_KEY = "background-color";
   
   private static void showMessage(String s) {
     System.out.println("*** " + s);
@@ -45,9 +46,12 @@ public class Hello {
                             .name("Java-Brandon")
                             .build();
 
-    boolean flagValue = client.boolVariation(FEATURE_FLAG_KEY, context, false);
+    boolean flagValue = client.boolVariation(QR_FLAG_KEY, context, false);
+    
+    String bgFlagValue = client.stringVariation(BACKGROUND_FLAG_KEY, context, "default");
 
-    showMessage("Feature flag '" + FEATURE_FLAG_KEY + "' is " + flagValue + " for this context");
+    showMessage("The Feature Flag '" + QR_FLAG_KEY + "' is " + flagValue + " for " + context);
+    showMessage("Feature flag '" + BACKGROUND_FLAG_KEY + "' is " + bgFlagValue + " for this context");
 
     // Here we ensure that the SDK shuts down cleanly and has a chance to deliver analytics
     // events to LaunchDarkly before the program exits. If analytics events are not delivered,
