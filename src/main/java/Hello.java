@@ -50,8 +50,8 @@ public class Hello {
     
     String bgFlagValue = client.stringVariation(BACKGROUND_FLAG_KEY, context, "default");
 
-    showMessage("The Feature Flag '" + QR_FLAG_KEY + "' is " + flagValue + " for " + context);
-    showMessage("Feature flag '" + BACKGROUND_FLAG_KEY + "' is " + bgFlagValue + " for this context");
+    showMessage("The Feature Flag '" + QR_FLAG_KEY + "' is " + flagValue + " for " + context.getName());
+    showMessage("Feature flag '" + BACKGROUND_FLAG_KEY + "' is " + bgFlagValue + " for " + context.getName());
 
     // Here we ensure that the SDK shuts down cleanly and has a chance to deliver analytics
     // events to LaunchDarkly before the program exits. If analytics events are not delivered,
